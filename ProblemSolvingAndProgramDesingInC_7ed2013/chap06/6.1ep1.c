@@ -23,3 +23,4 @@ int main(void)
 	fclose(outp);
 	return (0);
 }
+// gcc -Wall -o 6.1ep1 6.1ep1.c

@@ -1,7 +1,7 @@
 /*  Gets data to place in dbl_arr until value of sentinel is encountered in the input.
-	 	Returns number of values stored through dbl_sizep.
-	 	Stops input prematurely if there are more than dbl_max data values before the sentinel or if invalid data is encountered.
-	 	sentinel and dbl_max are defined and dbl_max is the declared size of dbl_arr
+   Returns number of values stored through dbl_sizep.
+   Stops input prematurely if there are more than dbl_max data values before the sentinel or if invalid data is encountered.
+   sentinel and dbl_max are defined and dbl_max is the declared size of dbl_arr
  */
 #include <stdio.h>
 void  fill_to_sentinel(int dbl_max, double sentinel, double dbl_arr[], int *dbl_sizep)

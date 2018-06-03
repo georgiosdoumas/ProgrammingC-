@@ -1,6 +1,5 @@
 /* Maintains 2 orderings of a list of applicants: the original ordering of the data,
-* and an alphabetical ordering accessed through an array of pointers. 
-* A more robust implementatin than what the book has, validates the inputs of the user.*/
+* and an alphabetical ordering accessed through an array of pointers. */
 #include <stdio.h>
 #include <string.h>
 #define STRSIZ 20 /* maximum string length for entered names */
@@ -28,7 +27,7 @@ int main(void)
     }
   } while(num_app > MAXAPP || num_app <1);
   do  // to absorb any spaces that may have been typed after the number, and also absorb the \n
-    scanf("%c", &one_char);
+    one_char = getchar(); //scanf("%c", &one_char);
   while (one_char != '\n');
   printf("Enter names of %d applicants on separate lines in the order in which they applied\n", num_app);
   printf("Names longer than %d will be truncated! \n", STRSIZ );
@@ -39,13 +38,16 @@ int main(void)
        null byte ('\0') is stored after the last character in the buffer. */
     fgets(applicants[i], STRSIZ, stdin);  // read STRSIZ-1 characters at maximum
     if(strlen(applicants[i]) < STRSIZ-1)
+       applicants[i][strlen(applicants[i])-1]='\0';   //substitute '\n' with '\0'
+    else if (applicants[i][strlen(applicants[i])-1] == '\n')
     {
-       applicants[i][strlen(applicants[i])-1]='\0';   //substitute '\n' with '\0' 
-       continue;
+      puts("  That was a long name! ");   //comment it out for non-debug
+      applicants[i][strlen(applicants[i])-1]='\0';
     }
-    else {
+    else
+    {
       puts("  That was a long name! It will be truncated.");  //comment it out for non-debug
-      do scanf("%c", &one_char); while (one_char != '\n');  //discard extra characters, truncate name
+      do one_char = getchar(); while (one_char != '\n');  //discard extra characters, truncate name
     }
   }
   for (i = 0; i < num_app; ++i)
@@ -57,3 +59,4 @@ int main(void)
   return(0);
 }
 // gcc -Wall -o 8.5example7 8.5example7.functions.c 8.5example7.main.c
+

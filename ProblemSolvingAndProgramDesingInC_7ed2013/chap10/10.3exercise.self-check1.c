@@ -44,6 +44,9 @@ int main()
   earth = fget_planet(inpfile);
   print_planet(earth);
   fclose(inpfile);
+  // planet_t mars; mars = {"Mars", 10000, 4, 0.8, 16}; // this gives compile error....
+  planet_t mars = {"Mars", 10000, 4, 0.8, 16};    // This is the acceptable way, initialize in a single step.
+  print_planet(mars);
   printf("Now it is your turn to give a planet. Enter its data in a line like so :\n");
   printf("PlanetName DD.dd MM YY.yy HH.hh \n");
   printf(" where DDDD.dd is a double for the diameter of planet in km, MM is an integer of how many moons it has\n");
@@ -51,9 +54,10 @@ int main()
   printf(" HH.hh is a double of ho many hours it takes for a self-rotation (planets day): ");
   newpl = get_planet(&status);
   printf( "%d \n", status);
-  if (status ==5) print_planet(newpl); // all 5 components were read successfuly 
+  if (status ==5) print_planet(newpl); // all 5 components were read successfuly
   else printf("There was some error in data reading\n");
   return 0;
 }
 
 // gcc -Wall -o 10.3exercise.self-check1 10.3exercise.self-check1.c
+

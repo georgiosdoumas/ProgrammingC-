@@ -9,10 +9,10 @@ void* myThread( void* arg )
 {
   int val;
   pthread_t pt = pthread_self();
-  printf(" Thread (%x) will do a simple doubling of your input (you have 5 secs to give input)!\n", (int)pt);
+  printf(" Thread (%lu) will do a simple doubling of your input (you have 5 secs to give input)!\n", pt);
   printf(" Enter an integer:");
   scanf("%d", &val);
-  printf(" Your value doubled is %d \n", 2*val);
+  printf(" Your value doubled is %d \n  Thread will now exit\n", 2*val);
   pthread_exit( NULL );   /* Terminate the thread */
 }
 
@@ -26,10 +26,10 @@ int main()
     printf( "Can’t create pthread (%s)\n", strerror( errno ) );
     exit(-1);
   }
-  sleep(5); /* Required, to actually have time to see the thread execution, and give input. Comment it out to see what happens */
+  sleep(5);   /* This is important, to actually have time to see the thread execution, and give input */
   /* Instead of the above line with sleep, we could also use the following way : */
   /* pthread_join(mythread, NULL);  this is presented on page 260 and will be used thereafter */
-  printf("Main program finishes now.\n");
+  printf("Main program finishes now (after thread exited).\n");
   return 0;
 }
 
